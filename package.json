@@ -1,0 +1,12 @@
+{
+  "name": "v-crud-state",
+  "version": "1.0.0",
+  "description": "A Vue mixin that allows you simply to manage CRUD state.",
+  "main": "dist/v-crud-state.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": ["crud", "vue", "state"],
+  "author": "Sukohi Kuhoh",
+  "license": "MIT"
+}
