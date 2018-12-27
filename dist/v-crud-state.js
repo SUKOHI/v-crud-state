@@ -40,7 +40,6 @@ Vue.mixin({
             this.state = state;
             this.stateId = stateId;
         },
-
         stateValue: function stateValue(key) {
 
             if (_typeof(this.$data[key]) === 'object') {
@@ -75,14 +74,15 @@ Vue.mixin({
         }
     },
     mounted: function mounted() {
+        var _this = this;
 
-        var self = this;
         this.stateInit();
+        this.onChangeState();
 
         window.addEventListener('hashchange', function () {
 
-            self.stateInit();
-            self.onChangeState();
+            _this.stateInit();
+            _this.onChangeState();
         });
     }
 });

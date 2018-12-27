@@ -7,11 +7,7 @@ Vue.mixin({
     },
     methods: {
         // should be overwritten.
-        onChangeState() {
-
-            console.log('Overwrite onChangeState()')
-
-        },
+        onChangeState() {},
         stateInit() {
 
             const hash = location.hash.substr(1);
