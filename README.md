@@ -7,7 +7,7 @@ A Vue mixin that allows you simply to manage CRUD state.
 
 # About state
 
-This package recognizes 4 states from hash value of URL.
+This package recognizes 4 states from hash value of URL by default.
 
 * index
 * create
@@ -22,7 +22,7 @@ And state value is also available using `:`.
 `https://example.com/test#show:value`
 
 # Preparation
-Set initState() in `mounted()`.
+Set `this.initState()` in `mounted()`.
 
     new Vue({
         el: '#app',
@@ -36,12 +36,12 @@ Set initState() in `mounted()`.
 # Usage
 
 This package automatically calls `onChangeState()` when changing URL.  
-So add method as follows.
+So add the method as follows.
 
     new Vue({
         el: '#app',
         methods: {
-            onChangeState: function() {
+            onChangeState: function(state, stateValue) {
 
                 // Your code here
 
@@ -49,9 +49,11 @@ So add method as follows.
         }
     });
 
+Note: `state` and `stateValue` are optional.
+
 # Retrieve current state
 
-You can retrieve current state through `this.state`.
+You can retrieve a current state through `this.state`.
 
     if(this.state == 'create') {
     
@@ -91,7 +93,7 @@ Or you also have specific ways.
 
 You can retrieve a current state value through `this.stateValue`.
 
-    const stateValue = this.stateValue;
+    const value = this.stateValue;
 
 Note: Default value is `null`.
 
@@ -117,13 +119,14 @@ For example, you have `titles` object in `data` as follows.
             index: 'Title of INDEX',
             create: 'Title of CREATE',
             edit: 'Title of EDIT',
-            show: 'Title of SHOW'
+            show: 'Title of SHOW',
+            confirmation: 'Title of confirmation' // In case that you set an additional state called "confirmation".
         }
     }
     
-In this case, you can automatically retrieve a title corresponding a current state through `stateValue()`.
+In this case, you can automatically retrieve a title corresponding a current state through `stateData()`.
 
-    const title = this.stateValue('titles');    // depending on the states
+    const title = this.stateData('titles');    // depending on the states
     
 # License
 

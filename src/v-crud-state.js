@@ -40,7 +40,7 @@ Vue.mixin({
             this.stateValue = stateValue;
 
         },
-        stateValue(key) {
+        stateData(key) {
 
             if(typeof this.$data[key] === 'object') {
 
