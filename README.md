@@ -77,6 +77,8 @@ You can retrieve a current state value through `this.stateValue`.
 
     const stateValue = this.stateValue;
 
+Note: Default value is `null`.
+
 # Additional states
 Your own states are available by setting `additionalStates` in data property.
 
