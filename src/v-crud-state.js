@@ -25,23 +25,18 @@ Vue.mixin({
         },
         detectState() {
 
-            const availableStates = ['index', 'create', 'edit', 'show'];
             const hash = this.stateHash();
             const hashes = this.stateHashes(hash);
-            let state = hashes.state;
-            let stateValue = hashes.value;
+            this.state = hashes.state;
+            this.stateValue = hashes.value;
 
             if(!this.hasState &&
                 this.defaultState !== '' &&
                 this.defaultState !== this.stateHash()) {
 
                 location.href = '#'+ this.defaultState;
-                return;
 
             }
-
-            this.state = state;
-            this.stateValue = stateValue;
 
         },
         stateData(key) {
