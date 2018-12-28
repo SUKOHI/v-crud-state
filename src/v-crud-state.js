@@ -78,6 +78,11 @@ Vue.mixin({
 
             return (this.state === 'show');
 
+        },
+        hasState() {
+
+            return (this.state !== '');
+
         }
     },
     mounted() {
