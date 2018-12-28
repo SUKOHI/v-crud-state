@@ -102,11 +102,6 @@ Vue.mixin({
             return (this.state === 'show');
 
         },
-        isStateEmpty() {
-
-            return (this.stateHash() === '');
-
-        },
         hasState() {
 
             return (this.state !== '');
