@@ -16,9 +16,10 @@ This package recognizes 4 states from hash value of URL.
 
 It means that your URL should be `https://example.com/test#index` if you'd like to set state as `index`.
 
-And in case of `edit` and `show`, join a state and an ID with `:`.
+And state value is also available using `:`.
 
 `https://example.com/test#edit:15`
+`https://example.com/test#show:value`
 
 # Usage
 
@@ -30,23 +31,7 @@ So add method as follows.
         methods: {
             onChangeState: function() {
 
-                if(this.isIndex) {
-
-                    // Index
-
-                } else if(this.isCreate) {
-
-                    // Create
-
-                } else if(this.isEdit) {
-
-                    // Edit
-
-                } else if(this.isShow) {
-
-                    // Show
-
-                }
+                // Your code here
 
             }
         }
@@ -80,15 +65,30 @@ Or you also have specific ways.
 
         // Show
 
+    } else if(this.hasState) {
+
+        // Has state
+
     }
 
-# Retrieve state ID
+# Retrieve state value
 
-You can retrieve a current state through `this.stateId`.
+You can retrieve a current state value through `this.stateValue`.
 
-    const stateId = this.stateId;
+    const stateValue = this.stateValue;
 
-Note: `stateId` is available only when a current state is `edit` and `show`.
+# Additional states
+Your own states are available by setting `additionalStates` in data property.
+
+    data: {
+        additionalStates: ['confirmation']
+    },
+
+In this case, your URL should be `https://example.com/test#confirmation`.  
+
+Of course, you can retrieve state value as follows.  
+`https://example.com/test#confirmation:value`
+
 
 # Retrieve value corresponding a state
 

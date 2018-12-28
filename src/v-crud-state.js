@@ -2,7 +2,7 @@ Vue.mixin({
     data() {
         return {
             state: '',
-            stateId: -1
+            stateValue: null
         }
     },
     methods: {
@@ -13,23 +13,18 @@ Vue.mixin({
             const availableStates = ['index', 'create', 'edit', 'show'];
             const hash = location.hash.substr(1);
             const hashValues = hash.split(':');
-            let state = '';
-            let stateId = -1;
+            let state = hashValues[0];
+            let stateValue = (hashValues[1] !== undefined) ? hashValues[1] : null;
 
-            if(availableStates.indexOf(hashValues[0]) !== -1) {
+            if(availableStates.indexOf(state) === -1 &&
+                this.additionalStates.indexOf(state) === -1) {
 
-                state = hashValues[0];
-
-                if(hashValues[1] !== undefined) {
-
-                    stateId = hashValues[1];
-
-                }
+                state = '';
 
             }
 
             this.state = state;
-            this.stateId = stateId;
+            this.stateValue = stateValue;
 
         },
         stateValue(key) {
@@ -48,7 +43,8 @@ Vue.mixin({
 
             return '';
 
-        }
+        },
+
     },
     computed: {
         isIndex() {
