@@ -2,7 +2,8 @@ Vue.mixin({
     data() {
         return {
             state: '',
-            stateValue: null
+            stateValue: null,
+            additionalStates: []
         }
     },
     methods: {

@@ -6,7 +6,8 @@ Vue.mixin({
     data: function data() {
         return {
             state: '',
-            stateValue: null
+            stateValue: null,
+            additionalStates: []
         };
     },
 
@@ -41,7 +42,7 @@ Vue.mixin({
             this.state = state;
             this.stateValue = stateValue;
         },
-        stateValue: function stateValue(key) {
+        stateData: function stateData(key) {
 
             if (_typeof(this.$data[key]) === 'object') {
 
