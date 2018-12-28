@@ -77,6 +77,10 @@ Or you also have specific ways.
 
         // Show
 
+    } else if(this.isStateEmpty) {
+
+        // Empty
+
     } else if(this.hasState) {
 
         // Has state
