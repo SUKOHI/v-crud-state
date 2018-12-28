@@ -76,12 +76,12 @@ Vue.mixin({
     mounted() {
 
         this.stateInit();
-        this.onChangeState();
+        this.onChangeState(this.state, this.stateValue);
 
         window.addEventListener('hashchange', () => {
 
             this.stateInit();
-            this.onChangeState();
+            this.onChangeState(this.state, this.stateValue);
 
         });
 
