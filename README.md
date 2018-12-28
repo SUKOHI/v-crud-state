@@ -101,6 +101,7 @@ If a current state is not available, the state will change to the default one th
         defaultState: 'index' // optional
     }
 
+It means that a hash of the URL will automatically change to `#index` in this case.
 
 # Additional states
 Your own states are available by setting `additionalStates` in data property.

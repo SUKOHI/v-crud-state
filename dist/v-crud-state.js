@@ -35,11 +35,10 @@ Vue.mixin({
             var state = hashes.state;
             var stateValue = hashes.value;
 
-            if (!this.hasState && this.defaultState !== '') {
+            if (!this.hasState && this.defaultState !== '' && this.defaultState !== this.stateHash()) {
 
-                var defaultHashes = this.stateHashes(this.defaultState);
-                state = defaultHashes.state;
-                stateValue = defaultHashes.value;
+                location.href = '#' + this.defaultState;
+                return;
             }
 
             this.state = state;

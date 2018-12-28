@@ -1,6 +1,6 @@
 {
   "name": "v-crud-state",
-  "version": "1.1.2",
+  "version": "1.1.3",
   "description": "A Vue mixin that allows you simply to manage CRUD state.",
   "main": "dist/v-crud-state.js",
   "scripts": {
