@@ -7,7 +7,8 @@ Vue.mixin({
         return {
             state: '',
             stateValue: null,
-            additionalStates: []
+            additionalStates: [],
+            defaultState: ''
         };
     },
 
@@ -30,13 +31,15 @@ Vue.mixin({
 
             var availableStates = ['index', 'create', 'edit', 'show'];
             var hash = this.stateHash();
-            var hashValues = hash.split(':');
-            var state = hashValues[0];
-            var stateValue = hashValues[1] !== undefined ? hashValues[1] : null;
+            var hashes = this.stateHashes(hash);
+            var state = hashes.state;
+            var stateValue = hashes.value;
 
-            if (availableStates.indexOf(state) === -1 && this.additionalStates.indexOf(state) === -1) {
+            if (!this.hasState && this.defaultState !== '') {
 
-                state = '';
+                var defaultHashes = this.stateHashes(this.defaultState);
+                state = defaultHashes.state;
+                stateValue = defaultHashes.value;
             }
 
             this.state = state;
@@ -59,6 +62,17 @@ Vue.mixin({
         stateHash: function stateHash() {
 
             return location.hash.substr(1);
+        },
+        stateHashes: function stateHashes(hash) {
+
+            var availableStates = ['index', 'create', 'edit', 'show'];
+            var hashValues = hash.split(':');
+            var state = availableStates.indexOf(hashValues[0]) !== -1 || this.additionalStates.indexOf(hashValues[0]) !== -1 ? hashValues[0] : '';
+            var value = hashValues[1] !== undefined ? hashValues[1] : null;
+            return {
+                state: state,
+                value: value
+            };
         }
     },
     computed: {

@@ -97,6 +97,15 @@ You can retrieve a current state value through `this.stateValue`.
 
 Note: Default value is `null`.
 
+# Default state
+
+If a current state is not available, the state will change to the default one that you set in advance.  
+
+    data: {
+        defaultState: 'index' // optional
+    }
+
+
 # Additional states
 Your own states are available by setting `additionalStates` in data property.
 
