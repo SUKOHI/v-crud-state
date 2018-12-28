@@ -6,8 +6,7 @@ Vue.mixin({
     data: function data() {
         return {
             state: '',
-            stateId: -1,
-            additionalStates: {}
+            stateId: -1
         };
     },
 
@@ -16,25 +15,19 @@ Vue.mixin({
         onChangeState: function onChangeState() {},
         stateInit: function stateInit() {
 
+            var availableStates = ['index', 'create', 'edit', 'show'];
             var hash = location.hash.substr(1);
             var hashValues = hash.split(':');
-            var state = hashValues[0];
-            var stateId = hashValues[1];
+            var state = '';
+            var stateId = -1;
 
-            if (hash === 'index' || hash === 'create') {
-
-                state = hash;
-            } else {
+            if (availableStates.indexOf(hashValues[0]) !== -1) {
 
                 state = hashValues[0];
-                stateId = hashValues[1];
 
-                if (state === 'edit' || state === 'show') {
+                if (hashValues[1] !== undefined) {
 
-                    stateId = parseInt(stateId);
-                } else {
-
-                    return;
+                    stateId = hashValues[1];
                 }
             }
 
