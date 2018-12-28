@@ -31,11 +31,12 @@ Vue.mixin({
             let state = hashes.state;
             let stateValue = hashes.value;
 
-            if(!this.hasState && this.defaultState !== '') {
+            if(!this.hasState &&
+                this.defaultState !== '' &&
+                this.defaultState !== this.stateHash()) {
 
-                const defaultHashes = this.stateHashes(this.defaultState);
-                state = defaultHashes.state;
-                stateValue = defaultHashes.value;
+                location.href = '#'+ this.defaultState;
+                return;
 
             }
 
