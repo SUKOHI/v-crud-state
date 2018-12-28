@@ -8,10 +8,23 @@ Vue.mixin({
     methods: {
         // should be overwritten.
         onChangeState() {},
-        stateInit() {
+        initState() {
+
+            this.detectState();
+            this.onChangeState(this.state, this.stateValue);
+
+            window.addEventListener('hashchange', () => {
+
+                this.detectState();
+                this.onChangeState(this.state, this.stateValue);
+
+            });
+
+        },
+        detectState() {
 
             const availableStates = ['index', 'create', 'edit', 'show'];
-            const hash = location.hash.substr(1);
+            const hash = this.stateHash();
             const hashValues = hash.split(':');
             let state = hashValues[0];
             let stateValue = (hashValues[1] !== undefined) ? hashValues[1] : null;
@@ -44,7 +57,11 @@ Vue.mixin({
             return '';
 
         },
+        stateHash() {
 
+            return location.hash.substr(1);
+
+        }
     },
     computed: {
         isIndex() {
@@ -72,18 +89,5 @@ Vue.mixin({
             return (this.state !== '');
 
         }
-    },
-    mounted() {
-
-        this.stateInit();
-        this.onChangeState(this.state, this.stateValue);
-
-        window.addEventListener('hashchange', () => {
-
-            this.stateInit();
-            this.onChangeState(this.state, this.stateValue);
-
-        });
-
     }
 });

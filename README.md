@@ -21,6 +21,18 @@ And state value is also available using `:`.
 `https://example.com/test#edit:15`
 `https://example.com/test#show:value`
 
+# Preparation
+Set initState() in `mounted()`.
+
+    new Vue({
+        el: '#app',
+        mounted:function() {
+
+            this.initState();
+
+        }
+    });
+
 # Usage
 
 This package automatically calls `onChangeState()` when changing URL.  

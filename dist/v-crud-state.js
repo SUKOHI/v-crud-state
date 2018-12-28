@@ -13,10 +13,22 @@ Vue.mixin({
     methods: {
         // should be overwritten.
         onChangeState: function onChangeState() {},
-        stateInit: function stateInit() {
+        initState: function initState() {
+            var _this = this;
+
+            this.detectState();
+            this.onChangeState(this.state, this.stateValue);
+
+            window.addEventListener('hashchange', function () {
+
+                _this.detectState();
+                _this.onChangeState(_this.state, _this.stateValue);
+            });
+        },
+        detectState: function detectState() {
 
             var availableStates = ['index', 'create', 'edit', 'show'];
-            var hash = location.hash.substr(1);
+            var hash = this.stateHash();
             var hashValues = hash.split(':');
             var state = hashValues[0];
             var stateValue = hashValues[1] !== undefined ? hashValues[1] : null;
@@ -42,6 +54,10 @@ Vue.mixin({
             }
 
             return '';
+        },
+        stateHash: function stateHash() {
+
+            return location.hash.substr(1);
         }
     },
     computed: {
@@ -61,21 +77,13 @@ Vue.mixin({
 
             return this.state === 'show';
         },
+        isStateEmpty: function isStateEmpty() {
+
+            return this.stateHash() === '';
+        },
         hasState: function hasState() {
 
             return this.state !== '';
         }
-    },
-    mounted: function mounted() {
-        var _this = this;
-
-        this.stateInit();
-        this.onChangeState();
-
-        window.addEventListener('hashchange', function () {
-
-            _this.stateInit();
-            _this.onChangeState();
-        });
     }
 });
